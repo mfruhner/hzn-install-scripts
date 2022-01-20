@@ -2,11 +2,10 @@
 
 ## config Notes:
 
+### make hzn trust the self signed CA Cert:
+
 ```bash
-export GODEBUG=x509ignoreCN=0
-
-cp agri-gaia.localhost.crt /usr/local/share/ca-certificates/
-update-ca-certificates
-systemctl restart horizon
-
+sudo cp ca.agri-gaia.localhost.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates
+sudo systemctl restart horizon
 ```

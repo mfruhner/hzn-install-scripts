@@ -19,15 +19,8 @@ chmod +x ./agent-install.sh
 # s: skip registration
 sudo -sE ./agent-install.sh -b -s -i https://github.com/open-horizon/anax/releases
 
-# register
-# TODO
+# set env values
+eval export $(cat agent-install.cfg)
 
-# old
-#export INPUT_FILE_PATH=$1
-#export HZN_EXCHANGE_URL=$2
-#export HZN_FSS_CSSURL=$3
-#export HZN_AGBOT_URL=$4
-#export HZN_ORG_ID=$5
-#export HZN_EXCHANGE_USER_AUTH=$6
-#export HZN_NODE_ID=$7
-# export HZN_EXCHANGE_NODE_AUTH
+# register
+hzn register
