@@ -1,6 +1,7 @@
 #!/bin/bash
 
-TOKEN=$1
+DEVICE_ID=$1
+TOKEN=$2
 # install deps
 sudo apt update
 sudo apt install -yqf wget curl
@@ -8,7 +9,7 @@ sudo apt install -yqf wget curl
 mkdir hzn && cd hzn
 
 # contact backend to get the config file
-wget --method=PATCH -O agent-install.cfg https://api.agri-gaia.localhost/edge-devices/config?token=${TOKEN}
+wget -O agent-install.cfg https://api.agri-gaia.localhost/edge-devices/${DEVICE_ID}/config?token=${TOKEN}
 
 # download agent-install.sh
 wget -O agent-install.sh https://raw.githubusercontent.com/open-horizon/anax/master/agent-install/agent-install.sh
@@ -24,3 +25,6 @@ eval export $(cat agent-install.cfg)
 
 # register
 hzn register
+
+# contact backend to notify successful registration
+wget --method=POST https://api.agri-gaia.localhost/edge-devices/${DEVICE_ID}/register?token=${TOKEN}
