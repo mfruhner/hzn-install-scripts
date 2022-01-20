@@ -2,8 +2,8 @@
 
 TOKEN=$1
 # install deps
-apt update
-apt install -yqf wget curl
+sudo apt update
+sudo apt install -yqf wget curl
 
 mkdir hzn && cd hzn
 
@@ -17,7 +17,7 @@ chmod +x ./agent-install.sh
 # run Open Horizon Agent Installation
 # b: skip prompts
 # s: skip registration
-./agent-install.sh -b -s -i https://github.com/open-horizon/anax/releases
+sudo -sE ./agent-install.sh -b -s -i https://github.com/open-horizon/anax/releases
 
 # set env values
 eval export $(cat agent-install.cfg)
