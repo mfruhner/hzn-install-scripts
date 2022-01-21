@@ -27,4 +27,4 @@ eval export $(cat agent-install.cfg)
 hzn register
 
 # contact backend to notify successful registration
-wget --method=POST https://api.agri-gaia.localhost/edge-devices/${DEVICE_ID}/register?token=${TOKEN}
+curl -X POST https://api.agri-gaia.localhost/edge-devices/${DEVICE_ID}/register?token=${TOKEN}
