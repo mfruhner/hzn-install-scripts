@@ -3,10 +3,11 @@
 DEVICE_ID=$1
 TOKEN=$2
 # install deps
-sudo apt update
-sudo apt install -yqf wget curl
+#sudo apt update
+#sudo apt install -yqf wget curl
 
-mkdir hzn && cd hzn
+mkdir hzn
+cd hzn
 
 # contact backend to get the config file
 wget -O agent-install.cfg https://api.agri-gaia.localhost/edge-devices/${DEVICE_ID}/config?token=${TOKEN}
