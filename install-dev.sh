@@ -1,12 +1,15 @@
 #!/bin/bash
 
+# exit on error
+set -e
+
 DEVICE_ID=$1
 TOKEN=$2
 # install deps
 #sudo apt update
 #sudo apt install -yqf wget curl
 
-mkdir hzn
+mkdir -p hzn
 cd hzn
 
 # contact backend to get the config file
