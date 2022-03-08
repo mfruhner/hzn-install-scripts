@@ -5,21 +5,15 @@ set -e
 
 DEVICE_ID=$1
 TOKEN=$2
-# install deps
-#sudo apt update
-#sudo apt install -yqf wget curl
+#SERVER_URL=$3 #agri-gaia.localhost
+SERVER_URL=agri-gaia.duckdns.org
 
 mkdir -p hzn
 cd hzn
 
 # contact backend to get the config file
-if [ ! -e agent-install.cfg ]
-then
-    echo "agent-install.cfg not found. Downloading..."
-    wget -O agent-install.cfg https://api.agri-gaia.localhost/edge-devices/${DEVICE_ID}/config?token=${TOKEN}
-else
-    echo "agent-install.cfg found. Skipping Download!"
-fi
+echo "Downloading agent-install.cfg..."
+wget -O agent-install.cfg https://api.${SERVER_URL}/edge-devices/${DEVICE_ID}/config?token=${TOKEN}
 
 # download agent-install.sh
 wget -O agent-install.sh https://raw.githubusercontent.com/open-horizon/anax/master/agent-install/agent-install.sh
@@ -37,4 +31,4 @@ eval export $(cat agent-install.cfg)
 hzn register
 
 # contact backend to notify successful registration
-curl -X POST https://api.agri-gaia.localhost/edge-devices/${DEVICE_ID}/register?token=${TOKEN}
+curl -X POST https://api.${SERVER_URL}/edge-devices/${DEVICE_ID}/register?token=${TOKEN}
