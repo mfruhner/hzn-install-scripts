@@ -12,8 +12,13 @@ mkdir -p hzn
 cd hzn
 
 # contact backend to get the config file
-echo "Downloading agent-install.cfg..."
-wget -O agent-install.cfg https://api.${SERVER_URL}/edge-devices/${DEVICE_ID}/config?token=${TOKEN}
+if [ ! -e agent-install.cfg ]
+then
+    echo "agent-install.cfg not found. Downloading..."
+    wget -O agent-install.cfg https://api.${SERVER_URL}/edge-devices/${DEVICE_ID}/config?token=${TOKEN}
+else
+    echo "agent-install.cfg found. Skipping Download!"
+fi
 
 # download agent-install.sh
 wget -O agent-install.sh https://raw.githubusercontent.com/open-horizon/anax/master/agent-install/agent-install.sh
