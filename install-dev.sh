@@ -5,8 +5,8 @@ set -e
 
 DEVICE_ID=$1
 TOKEN=$2
-#SERVER_URL=$3 #agri-gaia.localhost
-SERVER_URL=agri-gaia.duckdns.org
+SERVER_URL=$3 #agri-gaia.localhost
+#SERVER_URL=agri-gaia.duckdns.org
 
 mkdir -p hzn
 cd hzn
